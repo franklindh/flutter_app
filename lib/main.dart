@@ -1,4 +1,8 @@
+// ignore_for_file: unnecessary_new
+
 import 'package:flutter/material.dart';
+import 'package:flutter_app/pertemuan1.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -56,6 +60,26 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void navigateLogin() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    int? isLogin = pref.getInt("is_login");
+    if (isLogin == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const Pertemuan1(
+                  title: "Halo Push",
+                )),
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    navigateLogin();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,24 +98,41 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: new BorderRadius.circular(5),
                   )),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(5.0),
             ),
             TextFormField(
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                   labelText: "Tes Input",
                   hintText: "Teks yang",
                   border: OutlineInputBorder(
-                    borderRadius: new BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(5),
                   )),
             ),
             ElevatedButton(
-              child: Text(
+              child: const Text(
                 "Simpan",
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () {
-                print("Tombol Simpan Ditekan");
+                // print("Tombol Simpan Ditekan");
+              },
+            ),
+            ElevatedButton(
+              child: const Text(
+                "Login",
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () async {
+                SharedPreferences pref = await SharedPreferences.getInstance();
+                await pref.setInt("is_login", 1);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const Pertemuan1(
+                            title: "Halo Push",
+                          )),
+                );
               },
             )
           ],
