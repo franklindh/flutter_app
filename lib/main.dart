@@ -3,32 +3,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pertemuan1.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:splashscreen/splashscreen.dart';
+
+// void main() {
+//   runApp(new MaterialApp(
+//     home: new SplashScreen(
+//       title: Text('Splash Screen'),
+//     ),
+//   ));
+// }
 
 void main() {
-  runApp(const MyApp());
+  runApp(new MaterialApp(
+    home: new MyApp(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => new _MyAppState();
+}
 
-  // This widget is the root of your application.
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+    return new SplashScreen(
+      seconds: 14,
+      navigateAfterSeconds: new Pertemuan1(
+        title: 'Pertemuan 1',
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      title: new Text(
+        'Welcome In SplashScreen',
+        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+      ),
+      image: Image.asset('images/logo.png'),
+      photoSize: 150.0,
+      backgroundColor: Colors.white,
+      loaderColor: Colors.red,
     );
   }
 }
