@@ -15,7 +15,7 @@ class Splashscreen extends StatefulWidget {
 
 class _SplashscreenState extends State<Splashscreen> {
   startSplashScreen() async {
-    var duration = const Duration(seconds: 5);
+    var duration = const Duration(seconds: 1);
     return Timer(duration, () {
       Navigator.pushReplacement(
           this.context,

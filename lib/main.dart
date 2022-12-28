@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_new
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/home.dart';
 import 'package:flutter_app/pertemuan1.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:splashscreen/splashscreen.dart';
@@ -29,7 +30,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return new SplashScreen(
       seconds: 14,
-      navigateAfterSeconds: new Pertemuan1(
+      navigateAfterSeconds: new Home(
         title: 'Pertemuan 1',
       ),
       title: new Text(
